@@ -4,4 +4,4 @@ node puppetagent1.mantech.com {
     ensure => file,
     content => lookup('secret_password'),
   }
- }
+}
