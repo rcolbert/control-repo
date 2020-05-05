@@ -1,4 +1,4 @@
-node puppet.mantech.com {
+node puppet1agent.mantech.com {
   include role::master
   file { '/etc/secret_password.txt':
     ensure => file,
