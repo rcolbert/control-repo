@@ -1,6 +1,6 @@
-node puppet.local {
+node puppet.mantech.com {
   include role::master
-  file {'/etc/secret_password.txt':
+  file { '/etc/secret_password.txt':
     ensure => file,
     content => lookup('secret_password'),
   }
