@@ -8,7 +8,7 @@ node puppetmaster.mantech.com {
 node puppetagent1.mantech.com {
   include role::master
   include role::master_server
-  file { '/test.txt'
+  file { '/test.txt':
     ensure  => file,
     content => 'testing testing 123',
 #  file { '/etc/secret_password.txt':
