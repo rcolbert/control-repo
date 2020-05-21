@@ -9,7 +9,7 @@ node puppetagent1.mantech.com {
   include role::master
   file { '/etc/secret_password.txt':
     ensure => file,
-    content => lookup('secret_password'),
+    content => hiera('secret_password'),
   }
 }
 node puppetagent2.mantech.com {
