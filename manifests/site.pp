@@ -14,7 +14,7 @@ node puppetagent1.mantech.com {
 #  file { '/etc/secret_password.txt':
 #    ensure => file,
 #    content => hiera('secret_password'),
-#  }
+  }
 }
 node puppetagent2.mantech.com {
   include role::master
