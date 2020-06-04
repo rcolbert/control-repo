@@ -1,5 +1,5 @@
 
-$agent1=" puppetagent1.mantech.com"
+#$node='puppet
 node puppetmaster.mantech.com {
   include role::master
   file { '/etc/secret_password.txt':
@@ -8,7 +8,7 @@ node puppetmaster.mantech.com {
   }
 }
 
-node $agent1 {
+node puppetagent1.mantech.com {
   include role::master
   include role::httpd
 
@@ -19,7 +19,7 @@ node $agent1 {
 
   apache::vhost { 'puppetagent1.mantech.com':
     port          => '80',
-    docroot       => '/var/www/',
+    docroot       => '/var/www/app',
     docroot_owner => 'apache',
     docroot_group => 'apache',
   }
@@ -33,6 +33,8 @@ node $agent1 {
     ssl_cert => '/etc/pki/tls/certs/puppetagent1.mantech.com.cert',
     ssl_key  => '/etc/ssl/etc/pki/tls/private/puppetagent1.mantech.com.key',
   }
+
+
 
   firewalld::custom_service{'puppet':
     short       => 'puppet',
