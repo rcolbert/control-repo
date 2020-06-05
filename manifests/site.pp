@@ -87,7 +87,3 @@ node puppetagent2.mantech.com {
   include role::master
 #  include role::master_server
 }
-
-node default {
-  include role::master
-}
