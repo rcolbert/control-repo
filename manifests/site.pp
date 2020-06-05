@@ -12,10 +12,29 @@ node $agent1 {
   include role::master
   include role::httpd
 
-  file { '/test.txt':
+  file { '/etc/pki/tls/private/puppetagent1.mantech.com.key':
     ensure  => file,
-    content => 'testing testing 123',
+    source => hiera('agent1cert'),
   }
+
+  file { '/etc/pki/tls/certs/puppetagent1.mantech.com.crt':
+    ensure  => file,
+    source => hiera('agent1cert'),
+  }
+
+  file { '/etc/pki/tls/CA/ca.crt':
+    ensure  => file,
+    source => hiera('cacert'),
+  }
+
+  file { '/etc/pki/tls/CA/ca.key':
+    ensure  => file,
+    source => hiera('cakey'),
+  }
+#  file { '/test.txt':
+#    ensure  => file,
+#    content => 'testing testing 123',
+#  }
 
   apache::vhost { 'puppetagent1.mantech.com':
     port          => '80',
