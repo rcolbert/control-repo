@@ -1,5 +1,10 @@
 
 $agent1=" puppetagent1.mantech.com"
+
+node default {
+  include role::master
+}
+
 node puppetmaster.mantech.com {
   include role::master
   file { '/etc/secret_password.txt':
@@ -8,7 +13,7 @@ node puppetmaster.mantech.com {
   }
 }
 
-node $agent1 {
+node puppetagent1.mantech.com {
   include role::master
   include role::httpd
 
@@ -82,6 +87,7 @@ node puppetagent2.mantech.com {
   include role::master
 #  include role::master_server
 }
+
 node default {
   include role::master
 }
