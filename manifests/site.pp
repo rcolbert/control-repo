@@ -17,6 +17,13 @@ node puppetagent1.mantech.com {
   include role::master
   include role::httpd
 
+  file { '/etc/pki/tls/CA':
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0750',
+  }
+
   file { '/etc/pki/tls/private/puppetagent1.mantech.com.key':
     ensure  => file,
     source => hiera('agent1cert'),
@@ -36,23 +43,19 @@ node puppetagent1.mantech.com {
     ensure  => file,
     source => hiera('cakey'),
   }
-#  file { '/test.txt':
-#    ensure  => file,
-#    content => 'testing testing 123',
-#  }
 
   apache::vhost { 'puppetagent1.mantech.com':
     port          => '80',
     docroot       => '/var/www/',
-    docroot_owner => 'apache',
-    docroot_group => 'apache',
+    docroot_owner => 'root',
+    docroot_group => 'root',
   }
 
   apache::vhost { 'puppetagent1.mantech.com':
     port          => '443',
     docroot       => '/var/www/app',
-    docroot_owner => 'apache',
-    docroot_group => 'apache',
+    docroot_owner => 'root',
+    docroot_group => 'root',
     ssl      => true,
     ssl_cert => '/etc/pki/tls/certs/puppetagent1.mantech.com.cert',
     ssl_key  => '/etc/ssl/etc/pki/tls/private/puppetagent1.mantech.com.key',
@@ -86,4 +89,8 @@ node puppetagent1.mantech.com {
 node puppetagent2.mantech.com {
   include role::master
 #  include role::master_server
+#  file { '/test.txt':
+#    ensure  => file,
+#    content => 'testing testing 123',
+#  }
 }
