@@ -74,6 +74,10 @@ node puppetagent1.mantech.com {
 	  'protocol' => 'udp',
       },
       {
+	  'port'     => '80',
+	  'protocol' => 'tcp',
+      },
+      {
 	  'port'     => '443',
 	  'protocol' => 'tcp',
       },
